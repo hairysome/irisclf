@@ -1,0 +1,39 @@
+version: 0.8.3
+kind: BentoService
+metadata:
+  created_at: 2020-07-16 02:19:33.817869
+  service_name: IrisClassifier
+  service_version: 20200716101924_27C40D
+  module_name: iris_classifier
+  module_file: iris_classifier.py
+env:
+  pip_dependencies:
+  - scikit-learn
+  - pandas
+  - bentoml==0.8.3
+  conda_env:
+    name: bentoml-IrisClassifier
+    channels:
+    - defaults
+    dependencies:
+    - python=3.8.2
+    - pip
+  python_version: 3.8.2
+  docker_base_image: bentoml/model-server:0.8.3
+apis:
+- name: predict
+  docs: BentoService API
+  input_type: DataframeInput
+  output_type: DefaultOutput
+  mb_max_batch_size: 2000
+  mb_max_latency: 300
+  input_config:
+    is_batch_input: true
+    orient:
+    typ: frame
+    input_dtypes:
+  output_config:
+    cors: '*'
+artifacts:
+- name: model
+  artifact_type: SklearnModelArtifact
