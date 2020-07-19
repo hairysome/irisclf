@@ -1,0 +1,32 @@
+name: Continuous Integration and Delivery
+
+on: [push]
+
+env:
+  IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/api
+
+jobs:
+
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Log in to GitHub Packages
+        run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull image
+        run: |
+          docker pull ${{ env.IMAGE }}:latest || true
+      - name: Build image
+        run: |
+          docker build \
+            --cache-from ${{ env.IMAGE }}:latest \
+            --tag ${{ env.IMAGE }}:latest \
+            --file ./project/Dockerfile.prod \
+            "./project"
+      - name: Push image
+        run: |
+          docker push ${{ env.IMAGE }}:latest
