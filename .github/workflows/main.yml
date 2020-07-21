@@ -1,6 +1,9 @@
-name: Continuous Integration and Delivery
+name: Continuous Deployment to Heroku
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 env:
   IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/api
