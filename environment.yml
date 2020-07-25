@@ -1,6 +1,0 @@
-name: bentoml-IrisClassifier
-channels:
-- defaults
-dependencies:
-- python=3.8.2
-- pip
