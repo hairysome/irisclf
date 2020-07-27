@@ -1,9 +1,9 @@
 version: 0.8.3
 kind: BentoService
 metadata:
-  created_at: 2020-07-25 14:58:26.142347
+  created_at: 2020-07-27 03:50:49.926595
   service_name: IrisClassifier
-  service_version: '20200725225815_576740'
+  service_version: 20200727115028_2A8A72
   module_name: iris_classifier
   module_file: iris_classifier.py
 env:
