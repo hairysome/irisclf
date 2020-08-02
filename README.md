@@ -1,4 +1,4 @@
-# Generated BentoService bundle - IrisClassifier:20200727163421_432B4B
+# Generated BentoService bundle - IrisClassifier:20200802115132_298D23
 
 This is a ML Service bundle created with BentoML, it is not recommended to edit
 code or files contained in this directory. Instead, edit the code that uses BentoML
